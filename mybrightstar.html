@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>congratulations, my love.</title>
+    <link rel="icon" type="image/x-icon" href="https://raw.githubusercontent.com/mallooow/iloveyoumycpa/main/heart.ico">
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap" rel="stylesheet">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Fredoka One', cursive;
+            background: radial-gradient(circle, #ffb3ba 0%, #e0f6ff 50%, #f0e6ff 100%);
+            color: #4a4a4a;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            position: relative;
+        }
+        .border-wrapper {
+            background: linear-gradient(45deg, #ffb3ba, #bae1ff, #f0e6ff);
+            border-radius: 55px;
+            padding: 5px;
+            animation: slideIn 1.5s ease-out;
+            z-index: 10;
+        }
+        .container {
+            text-align: center;
+            width: 700px; /* Fixed width to keep container size consistent */
+            padding: 40px;
+            background: #ffffff;
+            border-radius: 50px;
+            box-shadow: 0 10px 30px rgba(255, 182, 193, 0.3);
+            box-sizing: border-box; /* Ensures padding is included in width */
+        }
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            background: linear-gradient(90deg, transparent, #ffb3ba, #bae1ff, transparent);
+            background-size: 200% 100%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: fadeLeftRight 3s infinite linear;
+        }
+        p {
+            font-size: 1.1rem;
+            line-height: 1.7;
+            text-align: justify;
+            /* Removed border-right and animation from p */
+        }
+        .cursor {
+            display: none; /* Hide cursor initially */
+            width: 2px;
+            height: 1.1rem; /* Match font-size */
+            background-color: #4a4a4a;
+            animation: blink 1s infinite;
+            vertical-align: baseline; /* Align with text */
+        }
+        .cursor2 {
+            display: none; /* Hide second cursor initially */
+            width: 2px;
+            height: 1.1rem; /* Match font-size */
+            background-color: #4a4a4a;
+            animation: blink 1s infinite;
+            vertical-align: baseline; /* Align with text */
+        }
+        .cursor3 {
+            display: none; /* Hide third cursor initially */
+            width: 2px;
+            height: 1.1rem; /* Match font-size */
+            background-color: #4a4a4a;
+            animation: blink 1s infinite;
+            vertical-align: baseline; /* Align with text */
+        }
+        .cursor4 {
+            display: none; /* Hide fourth cursor initially */
+            width: 2px;
+            height: 1.1rem; /* Match font-size */
+            background-color: #4a4a4a;
+            animation: blink 1s infinite;
+            vertical-align: baseline; /* Align with text */
+        }
+        .button {
+            display: inline-block;
+            margin-top: 30px;
+            padding: 15px 40px;
+            background: linear-gradient(45deg, #ffb3ba, #bae1ff);
+            border: none;
+            border-radius: 50px;
+            color: #fff;
+            font-weight: bold;
+            text-decoration: none;
+            cursor: pointer;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            animation: bounce 3s infinite;
+        }
+        .button:hover {
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 10px 20px rgba(255, 182, 193, 0.5);
+        }
+
+        /* Background floating hearts container */
+        .shapes {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        /* Heart shape for background floating shapes */
+        .shape {
+            position: absolute;
+            width: 80px;
+            height: 80px;
+            transform: rotate(-45deg);
+            animation: float 8s ease-in-out infinite;
+        }
+
+        .shape::before,
+        .shape::after {
+            content: '';
+            position: absolute;
+            width: 80px;
+            height: 80px;
+            background: inherit;
+            border-radius: 50%;
+        }
+
+        .shape::before {
+            top: -40px;
+            left: 0;
+        }
+
+        .shape::after {
+            left: 40px;
+            top: 0;
+        }
+
+        /* Give each heart a unique position and color */
+        .shape:nth-child(1) { top: 10%; left: 10%; background: rgba(255, 179, 186, 1); animation-delay: 0s; }
+        .shape:nth-child(2) { top: 20%; right: 15%; background: rgba(186, 225, 255, 1); animation-delay: 1s; }
+        .shape:nth-child(3) { bottom: 15%; left: 20%; background: rgba(240, 230, 255, 1); animation-delay: 2s; }
+        .shape:nth-child(4) { bottom: 10%; right: 10%; background: rgba(255, 255, 255, 1); animation-delay: 3s; }
+
+        /* Cinnamoroll heart image - positioned underneath the container */
+        .cinnamoroll-heart {
+            position: absolute;
+            width: 150px;
+            height: auto;
+            animation: bob 3s ease-in-out infinite;
+            z-index: 10;
+            top: 75vh; /* Adjust this value to position it below the container */
+            left: 50vw;
+            transform: translateX(-50%); /* Center horizontally */
+        }
+
+        /* Bobbing animation for the image */
+        @keyframes bob {
+            0%, 100% { transform: translateY(0) translateX(-50%); }
+            50% { transform: translateY(-20px) translateX(-50%); }
+        }
+
+        /* Firework heart animation */
+        @keyframes firework {
+            0% { transform: scale(0) rotate(-45deg); opacity: 1; }
+            50% { transform: scale(1.2) rotate(-45deg); opacity: 0.9; }
+            100% { transform: scale(2) rotate(-45deg); opacity: 0; }
+        }
+
+        /* Firework hearts */
+        .heart {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            transform: rotate(-45deg);
+            animation: firework 2s ease-out forwards;
+        }
+        .heart::before,
+        .heart::after {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background: inherit;
+            border-radius: 50%;
+        }
+        .heart::before { top: -10px; left: 0; }
+        .heart::after { left: 10px; top: 0; }
+
+        /* Supporting animations */
+        @keyframes slideIn {
+            from { transform: translateY(100px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+        @keyframes fadeLeftRight {
+            0% { background-position: -100% 50%; }
+            100% { background-position: 100% 50%; }
+        }
+        @keyframes blink {
+            0%, 50% { opacity: 1; }
+            51%, 100% { opacity: 0; }
+        }
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+            40% { transform: translateY(-10px); }
+            60% { transform: translateY(-5px); }
+        }
+        @keyframes float {
+            0%, 100% { transform: rotate(-45deg) translateY(0); opacity: 0.7; }
+            50% { transform: rotate(-45deg) translateY(-30px) scale(1.1); opacity: 1; }
+        }
+    </style>
+</head>
+<body>
+    <div class="shapes">
+        <div class="shape"></div>
+        <div class="shape"></div>
+        <div class="shape"></div>
+        <div class="shape"></div>
+        <img src="https://raw.githubusercontent.com/mallooow/iloveyoumycpa/main/cinna_heart.png" alt="Cinnamoroll Heart" class="cinnamoroll-heart" id="cinnamoroll-heart">
+    </div>
+
+    <div class="border-wrapper">
+        <div class="container">
+            <h1>my double-shining star.</h1>
+            <p><span id="typed-text"></span><span class="cursor">|</span></p>
+            <p><span id="typed-text2"></span><span class="cursor2">|</span></p>
+            <p><span id="typed-text3"></span><span class="cursor3">|</span></p>
+            <p><span id="typed-text4"></span><span class="cursor4">|</span></p>
+            <button class="button" onclick="launchFireworks()">click me for more hearts :></button>
+        </div>
+    </div>
+
+    <script>
+        // Fireworks on button click (now hearts!)
+        function launchFireworks() {
+            for (let i = 0; i < 20; i++) {
+                const firework = document.createElement('div');
+                firework.classList.add('heart');
+                const hue = Math.random() * 60 + 300; // pastel pink/purple range
+                firework.style.background = `hsl(${hue}, 70%, 80%)`;
+                firework.style.left = Math.random() * window.innerWidth + 'px';
+                firework.style.top = Math.random() * window.innerHeight + 'px';
+                firework.style.animationDuration = `${Math.random() * 2 + 1}s`;
+                firework.style.zIndex = '5';
+                document.body.appendChild(firework);
+                setTimeout(() => firework.remove(), 3000);
+            }
+        }
+
+        // Auto-launch subtle hearts on load
+        window.onload = () => {
+            setTimeout(() => {
+                for (let i = 0; i < 10; i++) {
+                    setTimeout(() => launchFireworks(), i * 300);
+                }
+            }, 1000);
+
+            // Start typing effect after hearts
+            setTimeout(() => {
+                typeWriter();
+            }, 4000); // Adjust delay as needed
+        };
+
+        // Typing effect for first paragraph
+        const text = "my little star burned twice as bright today. you did it, my love. i am sooooo proud of you.   ♡";
+        let index = 0;
+        function typeWriter() {
+            if (index === 0) {
+                document.querySelector('.cursor').style.display = 'inline-block'; // Show cursor at start of typing
+            }
+            if (index < text.length) {
+                document.getElementById('typed-text').innerHTML += text.charAt(index);
+                index++;
+                setTimeout(typeWriter, 75); // Typing speed (milliseconds per character)
+            } else {
+                // Hide cursor when typing is complete
+                document.querySelector('.cursor').style.display = 'none';
+                // Start typing the second paragraph
+                setTimeout(() => {
+                    typeWriter2();
+                }, 1000); // Delay before starting second paragraph
+            }
+        }
+
+        // Typing effect for second paragraph
+        const text2 = "it hasn’t been an easy path but hey, smooth seas don’t make good sailors, right ? all the sleepless nights, tears you cried, silent battles you fought, all led you here. i’m proud baby, but not surprised. you’ve always had this fire that never fades even at the toughest of times. it’s always been something that i admired in you, and it definitely proves its own point today. my baby ? graduated ? with latin honors ? younger you would never believe you if you said those words in the same sentence. little does she know how much more she had in her, how she can prove every doubtful thought wrong.";
+        let index2 = 0;
+        function typeWriter2() {
+            if (index2 === 0) {
+                document.querySelector('.cursor2').style.display = 'inline-block'; // Show cursor for second paragraph
+            }
+            if (index2 < text2.length) {
+                document.getElementById('typed-text2').innerHTML += text2.charAt(index2);
+                index2++;
+                setTimeout(typeWriter2, 75); // Typing speed (milliseconds per character)
+            } else {
+                // Hide cursor when typing is complete
+                document.querySelector('.cursor2').style.display = 'none';
+                // Start typing the third paragraph
+                setTimeout(() => {
+                    typeWriter3();
+                }, 1000); // Delay before starting third paragraph
+            }
+        }
+
+        // Typing effect for third paragraph
+        const text3 = "this isn’t the end for you baby, there’s still a lot in store for you. tons of challenges against a single ky ? hey, i like those odds. nothing my baby can’t beat. congratulations again, my magna cum laude. burn bright, my little star.";
+        let index3 = 0;
+        function typeWriter3() {
+            if (index3 === 0) {
+                document.querySelector('.cursor3').style.display = 'inline-block'; // Show cursor for third paragraph
+            }
+            if (index3 < text3.length) {
+                document.getElementById('typed-text3').innerHTML += text3.charAt(index3);
+                index3++;
+                setTimeout(typeWriter3, 75); // Typing speed (milliseconds per character)
+            } else {
+                // Hide cursor when typing is complete
+                document.querySelector('.cursor3').style.display = 'none';
+                // Start typing the fourth paragraph
+                setTimeout(() => {
+                    typeWriter4();
+                }, 1000); // Delay before starting fourth paragraph
+            }
+        }
+
+        // Typing effect for fourth paragraph
+        const text4 = "btw, you looked veeery pretty today, my baby. i loveeee you so so much. ♡ ";
+        let index4 = 0;
+        function typeWriter4() {
+            if (index4 === 0) {
+                document.querySelector('.cursor4').style.display = 'inline-block'; // Show cursor for fourth paragraph
+            }
+            if (index4 < text4.length) {
+                document.getElementById('typed-text4').innerHTML += text4.charAt(index4);
+                index4++;
+                setTimeout(typeWriter4, 75); // Typing speed (milliseconds per character)
+            } else {
+                // Hide cursor when typing is complete
+                document.querySelector('.cursor4').style.display = 'none';
+            }
+        }
+
+        // Random floating for Cinnamoroll heart (bounded and smooth)
+    </script>
+</body>
+</html>
