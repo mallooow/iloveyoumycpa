@@ -29,12 +29,12 @@
         }
         .container {
             text-align: center;
-            width: 700px; /* Fixed width to keep container size consistent */
+            width: 700px;
             padding: 40px;
             background: #ffffff;
             border-radius: 50px;
             box-shadow: 0 10px 30px rgba(255, 182, 193, 0.3);
-            box-sizing: border-box; /* Ensures padding is included in width */
+            box-sizing: border-box;
         }
         h1 {
             font-size: 2.5rem;
@@ -49,39 +49,14 @@
             font-size: 1.1rem;
             line-height: 1.7;
             text-align: justify;
-            /* Removed border-right and animation from p */
         }
-        .cursor {
-            display: none; /* Hide cursor initially */
+        .cursor, .cursor2, .cursor3, .cursor4 {
+            display: none;
             width: 2px;
-            height: 1.1rem; /* Match font-size */
+            height: 1.1rem;
             background-color: #4a4a4a;
             animation: blink 1s infinite;
-            vertical-align: baseline; /* Align with text */
-        }
-        .cursor2 {
-            display: none; /* Hide second cursor initially */
-            width: 2px;
-            height: 1.1rem; /* Match font-size */
-            background-color: #4a4a4a;
-            animation: blink 1s infinite;
-            vertical-align: baseline; /* Align with text */
-        }
-        .cursor3 {
-            display: none; /* Hide third cursor initially */
-            width: 2px;
-            height: 1.1rem; /* Match font-size */
-            background-color: #4a4a4a;
-            animation: blink 1s infinite;
-            vertical-align: baseline; /* Align with text */
-        }
-        .cursor4 {
-            display: none; /* Hide fourth cursor initially */
-            width: 2px;
-            height: 1.1rem; /* Match font-size */
-            background-color: #4a4a4a;
-            animation: blink 1s infinite;
-            vertical-align: baseline; /* Align with text */
+            vertical-align: baseline;
         }
         .button {
             display: inline-block;
@@ -101,8 +76,6 @@
             transform: translateY(-5px) scale(1.05);
             box-shadow: 0 10px 20px rgba(255, 182, 193, 0.5);
         }
-
-        /* Background floating hearts container */
         .shapes {
             position: absolute;
             top: 0;
@@ -112,8 +85,6 @@
             pointer-events: none;
             z-index: 1;
         }
-
-        /* Heart shape for background floating shapes */
         .shape {
             position: absolute;
             width: 80px;
@@ -121,7 +92,6 @@
             transform: rotate(-45deg);
             animation: float 8s ease-in-out infinite;
         }
-
         .shape::before,
         .shape::after {
             content: '';
@@ -131,49 +101,37 @@
             background: inherit;
             border-radius: 50%;
         }
-
         .shape::before {
             top: -40px;
             left: 0;
         }
-
         .shape::after {
             left: 40px;
             top: 0;
         }
-
-        /* Give each heart a unique position and color */
         .shape:nth-child(1) { top: 10%; left: 10%; background: rgba(255, 179, 186, 1); animation-delay: 0s; }
         .shape:nth-child(2) { top: 20%; right: 15%; background: rgba(186, 225, 255, 1); animation-delay: 1s; }
         .shape:nth-child(3) { bottom: 15%; left: 20%; background: rgba(240, 230, 255, 1); animation-delay: 2s; }
         .shape:nth-child(4) { bottom: 10%; right: 10%; background: rgba(255, 255, 255, 1); animation-delay: 3s; }
-
-        /* Cinnamoroll heart image - positioned underneath the container */
         .cinnamoroll-heart {
             position: absolute;
             width: 150px;
             height: auto;
             animation: bob 3s ease-in-out infinite;
             z-index: 10;
-            top: 75vh; /* Adjust this value to position it below the container */
+            top: 75vh;
             left: 50vw;
-            transform: translateX(-50%); /* Center horizontally */
+            transform: translateX(-50%);
         }
-
-        /* Bobbing animation for the image */
         @keyframes bob {
             0%, 100% { transform: translateY(0) translateX(-50%); }
             50% { transform: translateY(-20px) translateX(-50%); }
         }
-
-        /* Firework heart animation */
         @keyframes firework {
             0% { transform: scale(0) rotate(-45deg); opacity: 1; }
             50% { transform: scale(1.2) rotate(-45deg); opacity: 0.9; }
             100% { transform: scale(2) rotate(-45deg); opacity: 0; }
         }
-
-        /* Firework hearts */
         .heart {
             position: absolute;
             width: 20px;
@@ -192,8 +150,6 @@
         }
         .heart::before { top: -10px; left: 0; }
         .heart::after { left: 10px; top: 0; }
-
-        /* Supporting animations */
         @keyframes slideIn {
             from { transform: translateY(100px); opacity: 0; }
             to { transform: translateY(0); opacity: 1; }
@@ -225,7 +181,6 @@
         <div class="shape"></div>
         <img src="https://raw.githubusercontent.com/mallooow/iloveyoumycpa/main/cinna_heart.png" alt="Cinnamoroll Heart" class="cinnamoroll-heart" id="cinnamoroll-heart">
     </div>
-
     <div class="border-wrapper">
         <div class="container">
             <h1>my double-shining star.</h1>
@@ -236,14 +191,12 @@
             <button class="button" onclick="launchFireworks()">click me for more hearts :></button>
         </div>
     </div>
-
     <script>
-        // Fireworks on button click (now hearts!)
         function launchFireworks() {
             for (let i = 0; i < 20; i++) {
                 const firework = document.createElement('div');
                 firework.classList.add('heart');
-                const hue = Math.random() * 60 + 300; // pastel pink/purple range
+                const hue = Math.random() * 60 + 300;
                 firework.style.background = `hsl(${hue}, 70%, 80%)`;
                 firework.style.left = Math.random() * window.innerWidth + 'px';
                 firework.style.top = Math.random() * window.innerHeight + 'px';
@@ -253,102 +206,81 @@
                 setTimeout(() => firework.remove(), 3000);
             }
         }
-
-        // Auto-launch subtle hearts on load
         window.onload = () => {
             setTimeout(() => {
                 for (let i = 0; i < 10; i++) {
                     setTimeout(() => launchFireworks(), i * 300);
                 }
             }, 1000);
-
-            // Start typing effect after hearts
             setTimeout(() => {
                 typeWriter();
-            }, 4000); // Adjust delay as needed
+            }, 4000);
         };
-
-        // Typing effect for first paragraph
         const text = "my little star burned twice as bright today. you did it, my love. i am sooooo proud of you.   ♡";
         let index = 0;
         function typeWriter() {
             if (index === 0) {
-                document.querySelector('.cursor').style.display = 'inline-block'; // Show cursor at start of typing
+                document.querySelector('.cursor').style.display = 'inline-block';
             }
             if (index < text.length) {
                 document.getElementById('typed-text').innerHTML += text.charAt(index);
                 index++;
-                setTimeout(typeWriter, 75); // Typing speed (milliseconds per character)
+                setTimeout(typeWriter, 75);
             } else {
-                // Hide cursor when typing is complete
                 document.querySelector('.cursor').style.display = 'none';
-                // Start typing the second paragraph
                 setTimeout(() => {
                     typeWriter2();
-                }, 1000); // Delay before starting second paragraph
+                }, 1000);
             }
         }
-
-        // Typing effect for second paragraph
         const text2 = "it hasn’t been an easy path but hey, smooth seas don’t make good sailors, right ? all the sleepless nights, tears you cried, silent battles you fought, all led you here. i’m proud baby, but not surprised. you’ve always had this fire that never fades even at the toughest of times. it’s always been something that i admired in you, and it definitely proves its own point today. my baby ? graduated ? with latin honors ? younger you would never believe you if you said those words in the same sentence. little does she know how much more she had in her, how she can prove every doubtful thought wrong.";
         let index2 = 0;
         function typeWriter2() {
             if (index2 === 0) {
-                document.querySelector('.cursor2').style.display = 'inline-block'; // Show cursor for second paragraph
+                document.querySelector('.cursor2').style.display = 'inline-block';
             }
             if (index2 < text2.length) {
                 document.getElementById('typed-text2').innerHTML += text2.charAt(index2);
                 index2++;
-                setTimeout(typeWriter2, 75); // Typing speed (milliseconds per character)
+                setTimeout(typeWriter2, 75);
             } else {
-                // Hide cursor when typing is complete
                 document.querySelector('.cursor2').style.display = 'none';
-                // Start typing the third paragraph
                 setTimeout(() => {
                     typeWriter3();
-                }, 1000); // Delay before starting third paragraph
+                }, 1000);
             }
         }
-
-        // Typing effect for third paragraph
         const text3 = "this isn’t the end for you baby, there’s still a lot in store for you. tons of challenges against a single ky ? hey, i like those odds. nothing my baby can’t beat. congratulations again, my magna cum laude. burn bright, my little star.";
         let index3 = 0;
         function typeWriter3() {
             if (index3 === 0) {
-                document.querySelector('.cursor3').style.display = 'inline-block'; // Show cursor for third paragraph
+                document.querySelector('.cursor3').style.display = 'inline-block';
             }
             if (index3 < text3.length) {
                 document.getElementById('typed-text3').innerHTML += text3.charAt(index3);
                 index3++;
-                setTimeout(typeWriter3, 75); // Typing speed (milliseconds per character)
+                setTimeout(typeWriter3, 75);
             } else {
-                // Hide cursor when typing is complete
                 document.querySelector('.cursor3').style.display = 'none';
-                // Start typing the fourth paragraph
                 setTimeout(() => {
                     typeWriter4();
-                }, 1000); // Delay before starting fourth paragraph
+                }, 1000);
             }
         }
-
-        // Typing effect for fourth paragraph
         const text4 = "btw, you looked veeery pretty today, my baby. i loveeee you so so much. ♡ ";
         let index4 = 0;
         function typeWriter4() {
             if (index4 === 0) {
-                document.querySelector('.cursor4').style.display = 'inline-block'; // Show cursor for fourth paragraph
+                document.querySelector('.cursor4').style.display = 'inline-block';
             }
             if (index4 < text4.length) {
                 document.getElementById('typed-text4').innerHTML += text4.charAt(index4);
                 index4++;
-                setTimeout(typeWriter4, 75); // Typing speed (milliseconds per character)
+                setTimeout(typeWriter4, 75);
             } else {
-                // Hide cursor when typing is complete
                 document.querySelector('.cursor4').style.display = 'none';
             }
         }
-
-        // Random floating for Cinnamoroll heart (bounded and smooth)
     </script>
 </body>
 </html>
